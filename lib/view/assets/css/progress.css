@@ -1,0 +1,66 @@
+/* Progress bar styles */
+.qnap-progress-container {
+    width: 100%;
+    margin: 15px 0;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.qnap-progress-bar {
+    height: 20px;
+    background-color: #27ae60;
+    width: 0;
+    transition: width 0.3s ease;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 3px;
+}
+
+.qnap-progress-info {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.qnap-progress-percentage {
+    font-weight: bold;
+}
+
+.qnap-progress-eta {
+    color: #666;
+}
+
+.qnap-progress-status {
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Additional styles for the modal UI */
+.qnap-modal-container .qnap-progress-container {
+    margin: 20px 0;
+}
+
+.qnap-modal-container .qnap-progress-status {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.qnap-modal-container .qnap-progress-info {
+    padding: 0 10px;
+}
+
+/* Pulsing animation for in-progress bars */
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+.qnap-progress-bar-animated {
+    animation: pulse 1.5s infinite;
+}

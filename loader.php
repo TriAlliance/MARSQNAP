@@ -185,7 +185,6 @@ require_once QNAP_CONTROLLER_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-backups-controller.php';
 
-// Include multisite-specific classes
 require_once QNAP_MODEL_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-multisite-manager.php';
@@ -193,6 +192,10 @@ require_once QNAP_MODEL_PATH .
 require_once QNAP_MODEL_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-verification.php';
+
+require_once QNAP_MODEL_PATH .
+             DIRECTORY_SEPARATOR .
+             'class-qnap-progress-bar.php';
 
 require_once QNAP_EXPORT_PATH .
              DIRECTORY_SEPARATOR .
@@ -257,6 +260,10 @@ require_once QNAP_EXPORT_PATH .
 require_once QNAP_IMPORT_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-import-upload.php';
+
+require_once QNAP_IMPORT_PATH .
+             DIRECTORY_SEPARATOR .
+             'class-qnap-import-init.php';
 
 require_once QNAP_IMPORT_PATH .
              DIRECTORY_SEPARATOR .
