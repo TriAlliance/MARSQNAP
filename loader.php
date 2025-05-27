@@ -3,7 +3,7 @@
 namespace qnap;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( 'not here' );
+    die( 'not here' );
 }
 
 // Include all the files that you want to load in here
@@ -185,6 +185,15 @@ require_once QNAP_CONTROLLER_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-backups-controller.php';
 
+// Include multisite-specific classes
+require_once QNAP_MODEL_PATH .
+             DIRECTORY_SEPARATOR .
+             'class-qnap-multisite-manager.php';
+
+require_once QNAP_MODEL_PATH .
+             DIRECTORY_SEPARATOR .
+             'class-qnap-verification.php';
+
 require_once QNAP_EXPORT_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-export-init.php';
@@ -192,6 +201,10 @@ require_once QNAP_EXPORT_PATH .
 require_once QNAP_EXPORT_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-export-compatibility.php';
+
+require_once QNAP_EXPORT_PATH .
+             DIRECTORY_SEPARATOR .
+             'class-qnap-export-multisite.php';
 
 require_once QNAP_EXPORT_PATH .
              DIRECTORY_SEPARATOR .
@@ -256,6 +269,10 @@ require_once QNAP_IMPORT_PATH .
 require_once QNAP_IMPORT_PATH .
              DIRECTORY_SEPARATOR .
              'class-qnap-import-confirm.php';
+
+require_once QNAP_IMPORT_PATH .
+             DIRECTORY_SEPARATOR .
+             'class-qnap-import-multisite.php';
 
 require_once QNAP_IMPORT_PATH .
              DIRECTORY_SEPARATOR .

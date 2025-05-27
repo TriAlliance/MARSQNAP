@@ -6,12 +6,12 @@ namespace qnap;
  * Description: Backup, migrate restore your WordPress website with QNAP NAS.
  * Author: QNAP
  * Author URI: https://service.qnap.com/
- * Version: 1.0.5
+ * Version: 1.1.0
  * Text Domain: qnap-appbackup
  * Domain Path: /languages
  * Network: True
  *
- * Copyright (C) 2014-2020 Qeek Inc.
+ * Copyright (C) 2014-2023 Qeek Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,12 +28,12 @@ namespace qnap;
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( 'not here' );
+    die( 'not here' );
 }
 
 // Check SSL Mode
 if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) && ( $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ) {
-	$_SERVER['HTTPS'] = 'on';
+    $_SERVER['HTTPS'] = 'on';
 }
 
 // Plugin Basename
@@ -68,7 +68,3 @@ require_once dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'loader.php';
 // =========================================================================
 
 $main_controller = new QNAP_Main_Controller();
-
-// define('WP_DEBUG', false)
-// define( 'WP_DEBUG_LOG', true );
-// define('SAVEQUERIES', true);

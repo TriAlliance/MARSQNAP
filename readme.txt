@@ -1,10 +1,10 @@
 === QNAP NAS Backup ===
 Contributors: qnapplugin
-Tags: backup, migrate, restore, qnap, nas
+Tags: backup, migrate, restore, qnap, nas, multisite
 Requires at least: 3.3
 Tested up to: 6.4
 Requires PHP: 7.2
-Stable tag: 1.0.5
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -17,6 +17,8 @@ Backup, migrate restore your WordPress website with QNAP NAS.
 This plugin can simply backup and restore your WordPress website with QNAP NAS, including the database, mediafiles, plugins and themes with unlimited size.
 
 QNAP NAS Backup can also set a daily or weekly automatic backup schedule to save you time.
+
+**New in version 1.1.0: WordPress Multisite support** - You can now backup and restore WordPress multisite networks!
 
 If you have any questions, please ask us in the [QNAP Customer Service](https://service.qnap.com/).
 
@@ -32,6 +34,14 @@ Learn more: [https://qnap.to/48qpmb](https://qnap.to/48qpmb)
 Alternatively you can download the plugin using the download button on this page and then upload the qnap folder to the /wp-content/plugins/ directory then activate throught the Plugins dashboard in WordPress
 
 == Changelog ==
+= 1.1.0 =
+* Added WordPress Multisite support
+* Fixed issue with backups not being properly deleted
+* Added backup verification for improved reliability
+* Fixed file size reporting issues
+* Added restore verification to confirm backup integrity
+* Improved error handling and logging
+
 = 1.0.5 =
 * Fix compatibility issues with WordPress 6.4
 
@@ -43,5 +53,4 @@ Alternatively you can download the plugin using the download button on this page
 * Fix progress bug
 
 = 1.0 =
-
 * Initial release
