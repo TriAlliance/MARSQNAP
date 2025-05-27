@@ -2,13 +2,13 @@
 namespace qnap;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	die( 'not here' );
+    die( 'not here' );
 }
 
 // ==================
 // = Plugin Version =
 // ==================
-define( 'QNAP_VERSION', '1.0.5' );
+define( 'QNAP_VERSION', '1.1.0' );
 
 // ===============
 // = Plugin Name =
@@ -349,4 +349,3 @@ define( 'QNAP_WORDPRESS_HTACCESS', ABSPATH . DIRECTORY_SEPARATOR . '.htaccess' )
 // = WordPress web.config File =
 // =============================
 define( 'QNAP_WORDPRESS_WEBCONFIG', ABSPATH . DIRECTORY_SEPARATOR . 'web.config' );
-

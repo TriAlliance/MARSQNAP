@@ -567,17 +567,17 @@ class QNAP_Main_Controller {
             'qnap\QNAP_Backups_Controller::index'
         );
         
-        // Add Export options page
+        // Add Create Backup page
         add_submenu_page(
             'qnap_export',
             __( 'Create Backup', QNAP_PLUGIN_NAME ),
             __( 'Create Backup', QNAP_PLUGIN_NAME ),
             'export',
             'qnap_create_export',
-            'qnap\QNAP_Export_Controller::index'
+            'qnap\QNAP_Export_Controller::create'
         );
 
-        // // Sub-level Import menu
+        // Sub-level Import menu
         add_submenu_page(
             'qnap_export',
             __( 'Import', QNAP_PLUGIN_NAME ),
@@ -606,6 +606,12 @@ class QNAP_Main_Controller {
             );
         }
 
+        // Register progress CSS
+        wp_register_style(
+            'qnap_progress',
+            QNAP_Template::asset_link( 'css/progress.css' )
+        );
+
         wp_register_script(
             'qnap_util',
             QNAP_Template::asset_link( 'javascript/util.min.js' ),
@@ -618,6 +624,13 @@ class QNAP_Main_Controller {
             array( 'qnap_util' )
         );
 
+        wp_register_script(
+            'qnap_modal_progress',
+            QNAP_Template::asset_link( 'js/modal-progress.js' ),
+            array( 'jquery', 'qnap_util' ),
+            QNAP_VERSION
+        );
+
         wp_localize_script(
             'qnap_settings',
             'qnap_locale',
@@ -626,6 +639,16 @@ class QNAP_Main_Controller {
                 'how_may_we_help_you'                 => __( 'How may we help you?', QNAP_PLUGIN_NAME ),
                 'thanks_for_submitting_your_feedback' => __( 'Thanks for submitting your feedback!', QNAP_PLUGIN_NAME ),
                 'thanks_for_submitting_your_request'  => __( 'Thanks for submitting your request!', QNAP_PLUGIN_NAME ),
+            )
+        );
+        
+        wp_localize_script(
+            'qnap_modal_progress',
+            'qnapBackupLocale',
+            array(
+                'testing_restore' => __( 'Testing Restore...', QNAP_PLUGIN_NAME ),
+                'test_restore' => __( 'Test Restore Capability', QNAP_PLUGIN_NAME ),
+                'error_testing' => __( 'Error testing restore capability', QNAP_PLUGIN_NAME ),
             )
         );
     }
@@ -653,18 +676,23 @@ class QNAP_Main_Controller {
                 QNAP_Template::asset_link( 'css/export.min.rtl.css' )
             );
         } else {
-
             wp_enqueue_style(
                 'qnap_export',
                 QNAP_Template::asset_link( 'css/export.min.css' )
             );
         }
 
+        // Enqueue progress CSS
+        wp_enqueue_style('qnap_progress');
+
         wp_enqueue_script(
             'qnap_export',
             QNAP_Template::asset_link( 'javascript/export.min.js' ),
             array( 'qnap_util' )
         );
+
+        // Enqueue modal progress script
+        wp_enqueue_script('qnap_modal_progress');
 
         wp_localize_script(
             'qnap_export',
@@ -730,11 +758,17 @@ class QNAP_Main_Controller {
             );
         }
 
+        // Enqueue progress CSS
+        wp_enqueue_style('qnap_progress');
+
         wp_enqueue_script(
             'qnap_import',
             QNAP_Template::asset_link( 'javascript/import.min.js' ),
             array( 'qnap_util' )
         );
+
+        // Enqueue modal progress script
+        wp_enqueue_script('qnap_modal_progress');
 
         wp_localize_script(
             'qnap_import',
@@ -871,11 +905,17 @@ class QNAP_Main_Controller {
             );
         }
 
+        // Enqueue progress CSS
+        wp_enqueue_style('qnap_progress');
+
         wp_enqueue_script(
             'qnap_backups',
             QNAP_Template::asset_link( 'javascript/backups.min.js' ),
             array( 'qnap_util' )
         );
+
+        // Enqueue modal progress script
+        wp_enqueue_script('qnap_modal_progress');
 
         wp_localize_script(
             'qnap_backups',
@@ -992,28 +1032,16 @@ class QNAP_Main_Controller {
         // We don't want auth check for monitoring whether the user is still logged in
         remove_action( 'admin_enqueue_scripts', 'wp_auth_check_load' );
 
-//        if ( is_rtl() ) {
-//            wp_enqueue_style(
-//                'qnap_backups',
-//                QNAP_Template::asset_link( 'css/backups.min.rtl.css' )
-//            );
-//        } else {
-//            wp_enqueue_style(
-//                'qnap_backups',
-//                QNAP_Template::asset_link( 'css/backups.min.css' )
-//            );
-//        }
-//
-//        wp_enqueue_script(
-//            'qnap_backups',
-//            QNAP_Template::asset_link( 'javascript/backups.min.js' ),
-//            array( 'qnap_util' )
-//        );
+        // Enqueue progress CSS
+        wp_enqueue_style('qnap_progress');
 
         wp_enqueue_script(
             'qnap_backups',
             QNAP_Template::asset_link( 'javascript/qnap.js' )
         );
+
+        // Enqueue modal progress script
+        wp_enqueue_script('qnap_modal_progress');
 
         wp_localize_script(
             'qnap_backups',
@@ -1053,23 +1081,6 @@ class QNAP_Main_Controller {
                 'secret_key' => get_option( QNAP_SECRET_KEY ),
             )
         );
-
-        // wp_localize_script(
-        //     'qnap_backups',
-        //     'qnap_backups',
-        //     array(
-        //         'ajax'       => array(
-        //             'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=qnap_backups' ) ),
-        //         ),
-        //         'backups'    => array(
-        //             'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=qnap_backup_list' ) ),
-        //         ),
-        //         'labels'     => array(
-        //             'url' => wp_make_link_relative( admin_url( 'admin-ajax.php?action=qnap_add_backup_label' ) ),
-        //         ),
-        //         'secret_key' => get_option( QNAP_SECRET_KEY ),
-        //     )
-        // );
 
         wp_localize_script(
             'qnap_backups',

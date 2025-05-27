@@ -18,6 +18,7 @@
     font-size: 12px;
     line-height: 20px;
     border-radius: 3px;
+    position: relative;
 }
 
 .qnap-progress-info {
@@ -35,7 +36,7 @@
 }
 
 .qnap-progress-status {
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     color: #333;
     font-size: 14px;
 }
@@ -63,4 +64,26 @@
 
 .qnap-progress-bar-animated {
     animation: pulse 1.5s infinite;
+}
+
+/* Verification results styling */
+.qnap-verification-success {
+    background-color: #f0f7ed;
+    border-left: 4px solid #7ad03a;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.qnap-verification-warning {
+    background-color: #fff8e5;
+    border-left: 4px solid #ffba00;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.qnap-verification-error {
+    background-color: #fef1f1;
+    border-left: 4px solid #dc3232;
+    padding: 10px;
+    margin: 15px 0;
 }
